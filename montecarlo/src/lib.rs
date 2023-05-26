@@ -17,3 +17,8 @@ pub struct Canvas {
     pub width: u16,
 }
 
+pub struct Line {
+    pub a: Point,
+    pub b: Point,
+}
+
