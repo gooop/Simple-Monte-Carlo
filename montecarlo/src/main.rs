@@ -20,6 +20,7 @@ fn main() {
 struct MyWindowHandler {}
 
 impl WindowHandler for MyWindowHandler {
+    /// Handles drawing the window and the objects in it
     fn on_draw(&mut self, helper: &mut WindowHelper, graphics: &mut Graphics2D) {
         graphics.clear_screen(Color::from_rgb(0.8, 0.9, 1.0));
         // graphics.draw_circle((100.0, 100.0), 70.0, Color::BLUE);
