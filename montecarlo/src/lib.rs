@@ -21,8 +21,8 @@ impl Point {
 
 /// A canvas struct that consists of the length and width of the canvas
 pub struct Canvas {
-    pub length: u16,
-    pub width: u16,
+    pub length: u32,
+    pub width: u32,
 }
 
 impl Canvas {
