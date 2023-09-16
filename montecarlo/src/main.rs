@@ -5,8 +5,9 @@ use montecarlo::*;
 
 fn main() {
     // Config variables
-    let width = 1920;
-    let height = 1080;
+    let width: u32 = 1920;
+    let height: u32 = 1080;
+    let num_points = 1_000_000;
 
     // Setup points
     let canvas = Canvas::new(width, height);
