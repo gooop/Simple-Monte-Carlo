@@ -1,7 +1,7 @@
 /// A point struct that consists of an x and y coordinate.
 pub struct Point {
-    pub x: f64,
-    pub y: f64,
+    pub x: f32,
+    pub y: f32,
 }
 
 impl Point {
@@ -9,9 +9,9 @@ impl Point {
     ///
     /// # Arguments
     ///
-    /// * `x` - A f64 that represents the x coordinate given to the line
-    /// * 'y' - A f64 that represents the y coordinate given to the line
-    pub fn new(x: f64, y: f64) -> Point {
+    /// * `x` - A f32 that represents the x coordinate given to the line
+    /// * 'y' - A f32 that represents the y coordinate given to the line
+    pub fn new(x: f32, y: f32) -> Point {
         Point {
             x,
             y,
@@ -33,8 +33,8 @@ impl Canvas {
     ///
     /// # Arguments
     ///
-    /// * `length` - A u16 that represents the length (may be flipped with width)
-    /// * 'width' - A u16 that represents the width (may be flipped with length)
+    /// * `length` - A u32 that represents the length (may be flipped with width)
+    /// * 'width' - A u32 that represents the width (may be flipped with length)
     pub fn new(length: u32, width: u32) -> Canvas {
         if length > width {
             Canvas {
