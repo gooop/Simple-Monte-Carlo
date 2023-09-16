@@ -34,7 +34,7 @@ impl Canvas {
     ///
     /// * `length` - A u16 that represents the length (may be flipped with width)
     /// * 'width' - A u16 that represents the width (may be flipped with length)
-    pub fn new(length: u16, width: u16) -> Canvas {
+    pub fn new(length: u32, width: u32) -> Canvas {
         if length > width {
             Canvas {
                 length,
