@@ -19,10 +19,11 @@ impl Point {
     }
 }
 
-/// A canvas struct that consists of the length and width of the canvas
+/// A canvas struct that consists of the length and width of the canvas as well as points
 pub struct Canvas {
     pub length: u32,
     pub width: u32,
+    pub points: Vec<Point>,
 }
 
 impl Canvas {
@@ -37,14 +38,16 @@ impl Canvas {
     pub fn new(length: u32, width: u32) -> Canvas {
         if length > width {
             Canvas {
-                length,
-                width,
+                length: length,
+                width: width,
+                points: Vec::new(),
             }
         }
         else {
             Canvas {
-                width,
-                length,
+                length: width,
+                width: length,
+                points: Vec::new(),
             }
         }
     }
