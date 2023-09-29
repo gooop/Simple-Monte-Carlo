@@ -1,6 +1,7 @@
 use speedy2d::color::Color;
 use speedy2d::{Graphics2D, Window};
-use speedy2d::window::{WindowHandler, WindowHelper};
+use speedy2d::window::{WindowHandler, WindowHelper, MouseButton};
+use speedy2d::dimen::Vec2;
 use montecarlo::*;
 use rand::Rng;
 
@@ -22,11 +23,15 @@ fn main() {
     
     // Setup Window
     let window = Window::new_centered("Monte Carlo", (width, height)).unwrap();
-    window.run_loop(MyWindowHandler{canvas});
+    window.run_loop(MyWindowHandler{
+        canvas: canvas,
+        mouse_pos: Point::new(0.0, 0.0),
+    });
 }
 
 struct MyWindowHandler {
     pub canvas: Canvas,
+    pub mouse_pos: Point,
 }
 
 impl WindowHandler for MyWindowHandler {
@@ -35,12 +40,27 @@ impl WindowHandler for MyWindowHandler {
         graphics.clear_screen(Color::from_rgb(0.8, 0.9, 1.0));
         //graphics.draw_circle((100.0, 100.0), 70.0, Color::BLUE);
         //graphics.draw_circle((100.0, 100.0), 2.0, Color::BLACK);
+
+        for circle in self.canvas.circles.iter() {
+            graphics.draw_circle((circle.a.x, circle.a.y), circle.r, Color::BLUE);
+        }
         
-        for i in 0..(self.canvas.points.len() - 1) {
-            let draw_point = &self.canvas.points[i];
-            graphics.draw_circle((draw_point.x, draw_point.y), 2.0, Color::BLACK);
+        for point in self.canvas.points.iter() {
+            graphics.draw_circle((point.x, point.y), 2.0, Color::BLACK);
         }
 
         helper.request_redraw();
+    }
+
+    /// Continuously gets positions
+    fn on_mouse_move(&mut self, _helper: &mut WindowHelper, position: Vec2) {
+        self.mouse_pos.x = position.x;
+        self.mouse_pos.y = position.y;
+    }
+
+    /// Handles clicking
+    fn on_mouse_button_down(&mut self, _helper: &mut WindowHelper, _button: MouseButton) {
+        let new_circle = Circle::new(self.mouse_pos, 10.0);
+        self.canvas.circles.push(new_circle);
     }
 }
